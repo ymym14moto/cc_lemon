@@ -1,65 +1,30 @@
 import 'package:flutter/material.dart';
+import 'todo_list_page.dart';
 
 void main() {
-  // 最初に表示するWidget
-  runApp(MyTodoApp());
+  runApp(const TodoListApp());
 }
 
-class MyTodoApp extends StatelessWidget {
+/// Todoリストアプリのクラス
+///
+/// 以下の責務を持つ
+/// ・Todoリスト画面を生成する
+class TodoListApp extends StatelessWidget {
+  /// コンストラクタ
+  const TodoListApp({Key? key}) : super(key: key);
+
+  /// 画面を作成する
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // アプリ名
-      title: 'My Todo App',
+      // アプリケーションのタイトル
+      title: 'Good & New リスト',
+      // アプリケーションのテーマ
       theme: ThemeData(
-        // テーマカラー
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      // リスト一覧画面を表示
-      home: TodoListPage(),
-    );
-  }
-}
-
-// リスト一覧画面用Widget
-class TodoListPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('リスト一覧画面'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // "push"で新規画面に遷移
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) {
-              // 遷移先の画面としてリスト追加画面を指定
-              return TodoAddPage();
-            }),
-          );
-        },
-        child: Icon(Icons.add),
-      ),
-    );
-  }
-}
-
-// リスト追加画面用Widget
-class TodoAddPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: TextButton(
-          // ボタンをクリックした時の処理
-          onPressed: () {
-            // "pop"で前の画面に戻る
-            Navigator.of(context).pop();
-          },
-          child: Text('リスト追加画面（クリックで戻る）'),
-        ),
-      ),
+      // Todoリスト画面を生成しホーム画面とする
+      home: const TodoListPage(),
     );
   }
 }
