@@ -73,18 +73,59 @@ class _TodoInputPageState extends State<TodoInputPage> {
         padding: const EdgeInsets.all(30),
         child: Column(
           children: <Widget>[
-            // 完了かのチェックボックス
-            // CheckboxListTile(
-            //   title: const Text('(☝ ՞ਊ ՞)☝ < カンリョー'),
-            //   value: _done,
-            //   onChanged: (bool? value) {
-            //     setState(() {
-            //       // Todo(完了か)のチェック状態を変更し、画面を更新する
-            //       _done = value ?? false;
-            //     });
-            //   },
-            // ),
-            // const SizedBox(height: 20),
+            if ((widget.todo?.id ?? 0 - 1) > 1) ...[
+              Container(
+                width: MediaQuery.of(context).size.width * 0.85,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.green)),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '<前回のGood & New>',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                          'Title: ${_store.findByIndex((widget.todo?.id ?? 1) - 2).title}'),
+                      Text(
+                          'Detail: ${_store.findByIndex((widget.todo?.id ?? 1) - 2).detail}'),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+            if ((widget.todo?.id ?? 0 - 1) == -1) ...[
+              Container(
+                width: MediaQuery.of(context).size.width * 0.85,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.green)),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '<前回のGood & New>',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                          'Title: ${_store.findByIndex(_store.count() - 1).title}'),
+                      Text(
+                          'Detail: ${_store.findByIndex(_store.count() - 1).detail}'),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+            const SizedBox(height: 20),
             // タイトルのテキストフィールド
             TextField(
               autofocus: true,
