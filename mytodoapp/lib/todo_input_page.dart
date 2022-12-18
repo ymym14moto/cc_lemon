@@ -73,18 +73,29 @@ class _TodoInputPageState extends State<TodoInputPage> {
         padding: const EdgeInsets.all(30),
         child: Column(
           children: <Widget>[
-            // 完了かのチェックボックス
-            // CheckboxListTile(
-            //   title: const Text('(☝ ՞ਊ ՞)☝ < カンリョー'),
-            //   value: _done,
-            //   onChanged: (bool? value) {
-            //     setState(() {
-            //       // Todo(完了か)のチェック状態を変更し、画面を更新する
-            //       _done = value ?? false;
-            //     });
-            //   },
-            // ),
-            // const SizedBox(height: 20),
+            if (!_isCreateTodo) ...[
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    side: const BorderSide(
+                      color: Colors.red,
+                    ),
+                  ),
+                  onPressed: () {
+                    setState(() => {_store.delete(widget.todo!)});
+                    // Todoリスト画面に戻る
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text(
+                    '削除',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+            ],
+            const SizedBox(height: 20),
             // タイトルのテキストフィールド
             TextField(
               autofocus: true,

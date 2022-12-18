@@ -69,77 +69,50 @@ class _TodoListPageState extends State<TodoListPage> {
           // インデックスに対応するTodoを取得する
           var item = _store.findByIndex(index);
           return Slidable(
-            // 右方向にリストアイテムをスライドした場合のアクション
-            // startActionPane: ActionPane(
-            //   motion: const ScrollMotion(),
-            //   extentRatio: 0.25,
-            //   children: [
-            //     SlidableAction(
-            //       onPressed: (context) {
-            //         // Todo編集画面に遷移する
-            //         _pushTodoInputPage(item);
-            //       },
-            //       backgroundColor: Colors.yellow,
-            //       icon: Icons.edit,
-            //       label: '編集',
-            //     ),
-            //   ],
-            // ),
-            // 左方向にリストアイテムをスライドした場合のアクション
-            // endActionPane: ActionPane(
-            //   motion: const ScrollMotion(),
-            //   extentRatio: 0.25,
-            //   children: [
-            //     SlidableAction(
-            //       onPressed: (context) {
-            //         // Todoを削除し、画面を更新する
-            //         setState(() => {_store.delete(item)});
-            //       },
-            //       backgroundColor: Colors.red,
-            //       icon: Icons.edit,
-            //       label: '削除',
-            //     ),
-            //   ],
-            // ),
-            child: Container(
-              width: double.infinity,
-              alignment: Alignment.centerLeft,
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Colors.grey),
-                ),
-              ),
-              child: ListTile(
-                // ID
-                leading: Text(item.id.toString()),
-                // タイトル
-                title: Row(
-                  children: [
-                    RawMaterialButton(
-                      constraints: const BoxConstraints(
-                        maxHeight: 50,
-                        maxWidth: 200,
-                      ),
-                      onPressed: () {
-                        // Todo編集画面に遷移する
-                        _pushTodoInputPage(item);
-                      },
-                      child: Text(
-                        item.title,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Container(
+                width: double.infinity,
+                alignment: Alignment.centerLeft,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color.fromRGBO(208, 208, 208, 100),
+                      spreadRadius: 5,
+                      blurRadius: 15,
+                      offset: Offset(0, 4),
+                    )
                   ],
                 ),
-                // 完了か
-                // trailing: Checkbox(
-                //   // チェックボックスの状態
-                //   value: item.done,
-                //   onChanged: (bool? value) {
-                //     // Todo(完了か)を更新し、画面を更新する
-                //     setState(() => _store.update(item, value!));
-                //   },
-                // ),
+                child: RawMaterialButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  onPressed: () {
+                    // Todo編集画面に遷移する
+                    _pushTodoInputPage(item);
+                  },
+                  child: ListTile(
+                    // タイトル
+                    title: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Row(
+                        children: [
+                          Text(
+                            item.createDate,
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            item.title,
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
           );
