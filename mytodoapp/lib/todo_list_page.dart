@@ -22,7 +22,6 @@ class TodoListPage extends StatefulWidget {
 /// 以下の責務を持つ
 /// ・Todoリストを表示する
 /// ・Todoの追加/編集画面へ遷移する
-/// ・Todoの削除を行う
 class _TodoListPageState extends State<TodoListPage> {
   /// ストア
   final TodoListStore _store = TodoListStore();
@@ -57,6 +56,7 @@ class _TodoListPageState extends State<TodoListPage> {
   /// 画面を作成する
   @override
   Widget build(BuildContext context) {
+    setState(() {});
     return Scaffold(
       appBar: AppBar(
         // アプリケーションバーに表示するタイトル
@@ -122,6 +122,9 @@ class _TodoListPageState extends State<TodoListPage> {
       floatingActionButton: FloatingActionButton(
         // Todo追加画面に遷移する
         onPressed: _pushTodoInputPage,
+        // onPressed: () {
+        //   _pushTodoInputPage(_store.findByIndex(_store.count()));
+        // },
         child: const Icon(Icons.add),
       ),
     );

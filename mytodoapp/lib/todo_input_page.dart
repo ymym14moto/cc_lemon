@@ -73,24 +73,54 @@ class _TodoInputPageState extends State<TodoInputPage> {
         padding: const EdgeInsets.all(30),
         child: Column(
           children: <Widget>[
-            if (!_isCreateTodo) ...[
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    side: const BorderSide(
-                      color: Colors.red,
-                    ),
+            if ((widget.todo?.id ?? 0 - 1) > 1) ...[
+              Container(
+                width: MediaQuery.of(context).size.width * 0.85,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.green)),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '<前回のGood & New>',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                          'Title: ${_store.findByIndex((widget.todo?.id ?? 1) - 2).title}'),
+                      Text(
+                          'Detail: ${_store.findByIndex((widget.todo?.id ?? 1) - 2).detail}'),
+                    ],
                   ),
-                  onPressed: () {
-                    setState(() => {_store.delete(widget.todo!)});
-                    // Todoリスト画面に戻る
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    '削除',
-                    style: TextStyle(color: Colors.black),
+                ),
+              ),
+            ],
+            if ((widget.todo?.id ?? 0 - 1) == -1) ...[
+              Container(
+                width: MediaQuery.of(context).size.width * 0.85,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.green)),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '<前回のGood & New>',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                          'Title: ${_store.findByIndex(_store.count() - 1).title}'),
+                      Text(
+                          'Detail: ${_store.findByIndex(_store.count() - 1).detail}'),
+                    ],
                   ),
                 ),
               ),
