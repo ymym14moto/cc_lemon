@@ -99,7 +99,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
                 ),
               ),
             ],
-            if ((widget.todo?.id ?? 0 - 1) == -1) ...[
+            if ((widget.todo?.id ?? 0 - 1) == -1 && _store.count() > 0) ...[
               Container(
                 width: MediaQuery.of(context).size.width * 0.85,
                 decoration: BoxDecoration(
