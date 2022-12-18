@@ -35,7 +35,11 @@ dependencies:
   intl:
   shared_preferences:
 
+  flutter_native_splash: ^2.2.16
 
+flutter_native_splash:
+  color: "b5ce7f"
+  image: 'assets/images/cat (3).png'
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
